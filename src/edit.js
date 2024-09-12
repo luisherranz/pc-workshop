@@ -13,7 +13,7 @@ import { __ } from "@wordpress/i18n";
  */
 import { useBlockProps } from "@wordpress/block-editor";
 import { useSelect } from "@wordpress/data";
-import { useMemo } from "@wordpress/element";
+import { createBlock } from "@wordpress/blocks";
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -37,13 +37,15 @@ export default function Edit() {
 		return getEntityRecords("postType", "product");
 	}, []);
 
+	if (!products) {
+		return <p {...useBlockProps()}>Loading...</p>;
+	}
+
 	return (
-		<p {...useBlockProps()}>
+		<div {...useBlockProps()}>
 			{products.map(({ title }) => {
-				return createBlock("core/heading", {
-					content: title,
-				});
+				return <h1 key={title.raw}>{title.rendered}</h1>;
 			})}
-		</p>
+		</div>
 	);
 }

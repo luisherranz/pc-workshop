@@ -35,21 +35,28 @@ export default function Edit() {
 		const { getProducts } = select("wc/admin/products");
 		return getProducts({});
 	}, []);
+	const currencySymbol = wcSettings.currency.symbol;
 
 	if (!products) {
 		return <p {...useBlockProps()}>Loading...</p>;
 	}
 
 	return (
-		<div {...useBlockProps()}>
+		<ul className="products" {...useBlockProps()}>
 			{products.map(({ slug, name, price }) => {
 				return (
-					<div key={slug}>
-						<h3>{name}</h3>
-						<p>{price}</p>
-					</div>
+					<li className="product" key={slug}>
+						<article>
+							<h1>{name}</h1>
+							<div class="details">
+								<span class="price">
+									{currencySymbol} {price}
+								</span>
+							</div>
+						</article>
+					</li>
 				);
 			})}
-		</div>
+		</ul>
 	);
 }

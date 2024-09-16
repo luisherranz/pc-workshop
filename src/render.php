@@ -7,7 +7,7 @@ $products = wc_get_products(array('limit' => 10,));
 $currency = get_woocommerce_currency_symbol( get_woocommerce_currency() );
 ?>
 
-<ul class="product">
+<ul class="products">
 	<?php foreach ($products as $product) {
 		$data = $product->get_data();
 	?>

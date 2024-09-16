@@ -13,7 +13,6 @@ import { __ } from "@wordpress/i18n";
  */
 import { useBlockProps } from "@wordpress/block-editor";
 import { useSelect } from "@wordpress/data";
-import { createBlock } from "@wordpress/blocks";
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -33,8 +32,8 @@ import "./editor.scss";
  */
 export default function Edit() {
 	const products = useSelect((select) => {
-		const { getEntityRecords } = select("core");
-		return getEntityRecords("postType", "product");
+		const { getProducts } = select("wc/admin/products");
+		return getProducts({});
 	}, []);
 
 	if (!products) {
@@ -43,8 +42,13 @@ export default function Edit() {
 
 	return (
 		<div {...useBlockProps()}>
-			{products.map(({ title }) => {
-				return <h1 key={title.raw}>{title.rendered}</h1>;
+			{products.map(({ slug, name, price }) => {
+				return (
+					<div key={slug}>
+						<h3>{name}</h3>
+						<p>{price}</p>
+					</div>
+				);
 			})}
 		</div>
 	);

@@ -14,35 +14,37 @@ $currency = get_woocommerce_currency_symbol( get_woocommerce_currency() );
 
 ?>
 
-<div data-wp-interactive="workshop" >
-<ul class="products">
-	<?php foreach ($products as $product) {
-		$data = $product->get_data();
-	?>
-		<li class="product">
-			<article>
-				<h1><?= $data['name']; ?></h1>
-				<div class="details">
-					<span class="price"><?= $currency . $data['price']; ?></span>
-				</div>
-			</article>
-		</li>
-	<?php } ?>
-</ul>
-<nav>
-	<ul>
-		<?php for ($i = 1; $i <= $max_num_pages; $i++) {
-			$is_active = $i === $page_number;
-		?>
-			<li class="page">
-				<?php if ($is_active) : ?>
-					<span class="is-active"><?= $i; ?></span>
-				<?php else : ?>
-					<a href="?page_num=<?= $i; ?>"><?= $i; ?></a>
-				<?php endif; ?>
-			</li>
-		<?php } ?>
-	</ul>
-</nav>
+<div data-wp-interactive="workshop" data-wp-router-region="workshop-loop">
+	<div>
+		<ul class="products">
+			<?php foreach ($products as $product) {
+				$data = $product->get_data();
+			?>
+				<li class="product">
+					<article>
+						<h1><?= $data['name']; ?></h1>
+						<div class="details">
+							<span class="price"><?= $currency . $data['price']; ?></span>
+						</div>
+					</article>
+				</li>
+			<?php } ?>
+		</ul>
+		<nav>
+			<ul>
+				<?php for ($i = 1; $i <= $max_num_pages; $i++) {
+					$is_active = $i === $page_number;
+				?>
+					<li class="page">
+						<?php if ($is_active) : ?>
+							<span class="is-active"><?= $i; ?></span>
+						<?php else : ?>
+							<a data-wp-on--click="actions.navigate" href="?page_num=<?= $i; ?>"><?= $i; ?></a>
+						<?php endif; ?>
+					</li>
+				<?php } ?>
+			</ul>
+		</nav>
+	</div>
 <div>
 

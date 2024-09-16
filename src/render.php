@@ -2,11 +2,19 @@
 /**
  * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
  */
+$page_number = (int) $_GET['page_num'] ?? 1;
 
-$products = wc_get_products(array('limit' => 10,));
+$query = array('limit' => 10, 'paginate' => true, 'page' => $page_number);
+$response = wc_get_products($query);
+$products = $response->products;
+
+$max_num_pages = $response->max_num_pages;
+
 $currency = get_woocommerce_currency_symbol( get_woocommerce_currency() );
+
 ?>
 
+<div data-wp-interactive="workshop" >
 <ul class="products">
 	<?php foreach ($products as $product) {
 		$data = $product->get_data();
@@ -21,4 +29,20 @@ $currency = get_woocommerce_currency_symbol( get_woocommerce_currency() );
 		</li>
 	<?php } ?>
 </ul>
+<nav>
+	<ul>
+		<?php for ($i = 1; $i <= $max_num_pages; $i++) {
+			$is_active = $i === $page_number;
+		?>
+			<li class="page">
+				<?php if ($is_active) : ?>
+					<span class="is-active"><?= $i; ?></span>
+				<?php else : ?>
+					<a href="?page_num=<?= $i; ?>"><?= $i; ?></a>
+				<?php endif; ?>
+			</li>
+		<?php } ?>
+	</ul>
+</nav>
+<div>
 

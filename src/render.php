@@ -4,7 +4,11 @@
  */
 $page_number = (int) ( $_GET['page_num'] ?? 1 );
 
-$query = array('limit' => 10, 'paginate' => true, 'page' => $page_number);
+$query = array(
+	'limit' => 10,
+	'paginate' => true,
+	'page' => $page_number
+);
 $response = wc_get_products($query);
 $products = $response->products;
 
@@ -46,5 +50,5 @@ $currency = get_woocommerce_currency_symbol( get_woocommerce_currency() );
 			</ul>
 		</nav>
 	</div>
-<div>
+</div>
 

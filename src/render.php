@@ -2,7 +2,7 @@
 /**
  * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
  */
-$page_number = (int) $_GET['page_num'] ?? 1;
+$page_number = (int) ( $_GET['page_num'] ?? 1 );
 
 $query = array('limit' => 10, 'paginate' => true, 'page' => $page_number);
 $response = wc_get_products($query);
@@ -14,8 +14,8 @@ $currency = get_woocommerce_currency_symbol( get_woocommerce_currency() );
 
 ?>
 
-<div data-wp-interactive="workshop" data-wp-router-region="workshop-loop">
-	<div>
+<div data-wp-interactive="workshop">
+	<div data-wp-router-region="workshop-loop">
 		<ul class="products">
 			<?php foreach ($products as $product) {
 				$data = $product->get_data();

@@ -18,7 +18,7 @@ $currency = get_woocommerce_currency_symbol( get_woocommerce_currency() );
 
 ?>
 
-<div data-wp-interactive="workshop">
+<div data-wp-interactive="workshop" class="pc-workshop-block">
 	<div data-wp-router-region="workshop-loop">
 		<ul class="products">
 			<?php foreach ($products as $product) {
@@ -27,23 +27,23 @@ $currency = get_woocommerce_currency_symbol( get_woocommerce_currency() );
 				<li class="product">
 					<article>
 						<h1><?= $data['name']; ?></h1>
-						<div class="details">
-							<span class="price"><?= $currency . $data['price']; ?></span>
+						<div class="product__details">
+							<span class="product__price"><?= $currency . $data['price']; ?></span>
 						</div>
 					</article>
 				</li>
 			<?php } ?>
 		</ul>
 		<nav>
-			<ul>
+			<ul class="pagination">
 				<?php for ($i = 1; $i <= $max_num_pages; $i++) {
 					$is_active = $i === $page_number;
 				?>
-					<li class="page">
+					<li class="pagination__page">
 						<?php if ($is_active) : ?>
-							<span class="is-active"><?= $i; ?></span>
+							<span class="pagination__page--is-active"><?= $i; ?></span>
 						<?php else : ?>
-							<a data-wp-on--click="actions.navigate" href="?page_num=<?= $i; ?>"><?= $i; ?></a>
+							<a class="pagination__page--link" data-wp-on--click="actions.navigate" href="?page_num=<?= $i; ?>"><?= $i; ?></a>
 						<?php endif; ?>
 					</li>
 				<?php } ?>

@@ -42,21 +42,36 @@ export default function Edit() {
 	}
 
 	return (
-		<ul className="products" {...useBlockProps()}>
-			{products.map(({ slug, name, price }) => {
-				return (
-					<li className="product" key={slug}>
-						<article>
-							<h1 class="product-name">{name}</h1>
-							<div class="product-details">
-								<span class="product-price">
-									{currencySymbol} {price}
-								</span>
-							</div>
-						</article>
-					</li>
-				);
-			})}
-		</ul>
+		<div className="pc-workshop-block">
+			<ul className="products" {...useBlockProps()}>
+				{products.map(({ slug, name, price }) => {
+					return (
+						<li className="product" key={slug}>
+							<article>
+								<h1 class="product-name">{name}</h1>
+								<div class="product-details">
+									<span class="product-price">
+										{currencySymbol} {price}
+									</span>
+								</div>
+							</article>
+						</li>
+					);
+				})}
+			</ul>
+			<nav>
+				<ul class="pagination">
+					{[1, 2, 3, 4, 5].map((page) => (
+						<li class="pagination__page">
+							{page === 2 ? (
+								<span class="pagination__page--is_active">{page}</span>
+							) : (
+								<a class="pagination__page--link">{page}</a>
+							)}
+						</li>
+					))}
+				</ul>
+			</nav>
+		</div>
 	);
 }

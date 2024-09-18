@@ -21,6 +21,9 @@
 		"@wordpress/scripts": "^29.0.0"
 	},
 	"dependencies": {
+		"@wordpress/block-editor": "^14.2.0",
+		"@wordpress/components": "^28.7.0",
+		"@wordpress/icons": "^10.7.0",
 		"@wordpress/interactivity": "^6.7.0",
 		"@wordpress/interactivity-router": "^2.7.0"
 	}

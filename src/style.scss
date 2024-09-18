@@ -7,9 +7,11 @@
 
 .pc-workshop-block {
 	.products {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
 		list-style-type: none;
+		&.display-as-grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+		}
 
 		.product {
 			&__img {

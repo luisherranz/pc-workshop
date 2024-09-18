@@ -20,7 +20,7 @@ $currency = get_woocommerce_currency_symbol( get_woocommerce_currency() );
 
 <div data-wp-interactive="workshop" class="pc-workshop-block">
 	<div data-wp-router-region="workshop-loop">
-		<ul class="products">
+		<ul class="products display-as-<?= $attributes['layout'] ?>">
 			<?php foreach ($products as $product) {
 				$data = $product->get_data();
 			?>

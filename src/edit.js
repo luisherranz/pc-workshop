@@ -47,9 +47,9 @@ export default function Edit() {
 				return (
 					<li className="product" key={slug}>
 						<article>
-							<h1>{name}</h1>
-							<div class="details">
-								<span class="price">
+							<h1 class="product-name">{name}</h1>
+							<div class="product-details">
+								<span class="product-price">
 									{currencySymbol} {price}
 								</span>
 							</div>

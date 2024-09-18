@@ -26,7 +26,11 @@ $currency = get_woocommerce_currency_symbol( get_woocommerce_currency() );
 			?>
 				<li class="product">
 					<article>
-						<h1><?= $data['name']; ?></h1>
+						<img
+							class="product__img"
+							src="<?= wp_get_attachment_url( $data['image_id'] ); ?>"
+						/>
+						<h1 class="product__name"><?= $data['name']; ?></h1>
 						<div class="product__details">
 							<span class="product__price"><?= $currency . $data['price']; ?></span>
 						</div>

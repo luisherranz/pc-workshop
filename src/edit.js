@@ -49,13 +49,14 @@ export default function Edit() {
 			className={`${blockProps.className} pc-workshop-block`}
 		>
 			<ul className="products">
-				{products.map(({ slug, name, price }) => {
+				{products.map(({ slug, name, price, images }) => {
 					return (
 						<li className="product" key={slug}>
 							<article>
-								<h1 class="product-name">{name}</h1>
-								<div class="product-details">
-									<span class="product-price">
+								<img class="product__img" src={images?.[0]?.src} />
+								<h1 class="product__name">{name}</h1>
+								<div class="product__details">
+									<span class="product__price">
 										{currencySymbol} {price}
 									</span>
 								</div>

@@ -37,13 +37,18 @@ export default function Edit() {
 	}, []);
 	const currencySymbol = wcSettings.currency.symbol;
 
+	const blockProps = useBlockProps();
+
 	if (!products) {
-		return <p {...useBlockProps()}>Loading...</p>;
+		return <p {...blockProps}>Loading...</p>;
 	}
 
 	return (
-		<div className="pc-workshop-block">
-			<ul className="products" {...useBlockProps()}>
+		<div
+			{...blockProps}
+			className={`${blockProps.className} pc-workshop-block`}
+		>
+			<ul className="products">
 				{products.map(({ slug, name, price }) => {
 					return (
 						<li className="product" key={slug}>
@@ -64,7 +69,7 @@ export default function Edit() {
 					{[1, 2, 3, 4, 5].map((page) => (
 						<li class="pagination__page">
 							{page === 2 ? (
-								<span class="pagination__page--is_active">{page}</span>
+								<span class="pagination__page--is-active">{page}</span>
 							) : (
 								<a class="pagination__page--link">{page}</a>
 							)}
